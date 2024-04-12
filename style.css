@@ -93,7 +93,7 @@ li {
 }
 
 /* Media query to show toggle button only on mobile devices and tablets */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     .toggle-btn {
         display: block;
     }
