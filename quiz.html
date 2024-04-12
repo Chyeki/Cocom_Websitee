@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <style>
+   body {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 10;
+            text-align: center;
+            border-spacing: 10;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            background-image: url("pink.jpg");
+            background-size: cover;
+        }
+        #quiz-container {
+            background-color: rgb(241, 169, 180);
+            border-radius: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) rgb(233, 108, 128);
+            padding: 20px;
+            width: 600px;
+        
+        }
+        #continue-btn, #restart-btn, #end-btn {
+            font-size: 25px; /* Palakihin ang laki ng font */
+            background-color: rgb(252, 115, 160);
+            border-radius: 50px;
+            margin-bottom: 5px;
+        }
+        .question {
+            font-size: 50px; /* Palakihin ang laki ng font */
+            margin-bottom: 10px; /* Dagdagan ang bottom margin */
+            text-align: center;
+    
+        }
+        #timer, #score{
+            font-size: 20px;
+            align-items: flex-start;
+        }
+        #start-btn{
+            font-size: 40px;
+            padding: 50px;
+            background-color: rgb(236, 113, 132);
+           
+            text-align: center;
+        }
+         #options, #questions{
+           font-size: 35px; /* Palakihin ang laki ng font */
+           background-color:none;
+            margin: 30px;
+            text-align: center;
+            padding: 1.3rem;
+    }
+    button {
+    background-color:rgb(241, 160, 174); 
+    border:none; /* Fix border property */
+    background: rgb(248, 142, 142);
+    display: rgb(241, 130, 149);
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-family: inherit;
+    padding: 1.3rem;
+    border-radius: 50px;
+    margin-bottom: 5px;
+}
+
+button:hover {
+    background-color: peru;
+}
+
+button:focus {
+    outline: none;
+    background-color: #04adc4;
+    
+} #custom-alert {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    line-height: 1;
+    text-align: center; /* Center align the content */
+}
+
+            
+        
+    /* Add your CSS styles here */
+  </style>
+</head>
+<body>
+  <div id="quiz-container">
+    <p>Time Remaining: <span id="timer">20</span> seconds</p>
+    <p>Score: <span id="score">0</span></p>
+    <h1 id="question"></h1>
+    <div id="options"></div>
+    <button id="start-btn" onclick="startQuiz()">Start</button>
+    <button id="continue-btn" onclick="nextQuestion()" style="display: none;">Continue</button>
+    <button id="end-btn" onclick="endQuiz()" style="display: none;">End</button>
+    <button id="restart-btn" onclick="restartQuiz()" style="display: none;">Restart</button>
+    <div id="custom-alert"></div>
+  </div>
+    
+
+  <script>
+    
+    // Quiz data
+    const quizData = [
+      {
+        question: "A state or condition markedly different from the norm",
+        options: ["abase", "aberration", "abhor", ],
+        correctAnswer: 1
+      },
+      {
+        question: "Deadly or sinister",
+        options: ["ban", "balk", "baleful", ],
+        correctAnswer: 2
+      },
+      {
+        question: "An event resulting in great loss and misfortune",
+        options: ["calamity", "candid", "corpse", ],
+        correctAnswer: 0
+      },
+      {
+        question: "Waste time",
+        options: ["dapper", "dauntless", "dally", ],
+        correctAnswer: 2
+      },
+      {
+        question: "Selecting what seems best of various styles or ideas",
+        options: ["eclectic", "edify", "efface", ],
+        correctAnswer: 0
+      },
+      {
+        question: "Put together out of artificial or natural components",
+        options: ["facet", "fabricate", " facile", ],
+        correctAnswer: 1
+      },
+      {
+        question: "Unflinching in battle or action",
+        options: ["gamut", "gallant", "garb", ],
+        correctAnswer: 2
+      },
+      {
+        question: "The type of environment in which an organism normally lives",
+        options: ["habitat", "habitual", "habitue", ],
+        correctAnswer: 0
+      },
+      {
+        question: "Motivated by noble or moral beliefs rather than practicality",
+        options: ["idealistic", "ideological", " idiom", ],
+        correctAnswer: 0
+      },
+      {
+        question: "Technical terminology characteristic of a particular subject",
+        options: ["jaunt", "jeer", "jargon", ],
+        correctAnswer: 2
+      },
+      {
+        question: "Characterized by motion",
+        options: ["knave", "ken", "kinetic", ],
+        correctAnswer: 2
+      },
+      {
+        question: "Of or relating to or associated with the moon",
+        options: ["lunar", "lurid", "lurk", ],
+        correctAnswer: 0
+      },
+      {
+        question: "Spot, stain, or pollute",
+        options: ["magnanimous", "maculate", "machination", ],
+        correctAnswer: 1
+      },
+      {
+        question: "Someone who is excessively self-centered",
+        options: ["narcissist", "narrative", "nascent", ],
+        correctAnswer: 0
+      },
+      {
+        question: "Come into close contact or to touch lightly",
+        options: ["osculate", "orutund", "ossify", ],
+        correctAnswer: 0
+      },
+      {
+        question: "Refers to the partial shadow that surrounds the complete shadow of an opaque object, like during an eclipse",
+        options: ["parsimonious", "penumbra", "perspicaciou", ],
+        correctAnswer: 1
+      },
+      {
+        question: "Refers to a state of uncertainty or confusion, especially when faced with a difficult choice",
+        options: ["quandary ", "quintessential ", "quintain", ],
+        correctAnswer: 0
+      },
+      {
+        question: " Having a net-like pattern or structure",
+        options: ["rococo", "rapacious", "reticulate", ],
+        correctAnswer: 2
+      },
+      {
+        question: "Characterized by or making a hissing sound",
+        options: ["sibilant", "sempiternal", "sagacious", ],
+        correctAnswer: 0
+      },
+      {
+        question: "An object believed to have magical or protective powers",
+        options: ["talisman ", "taciturn ", "tenebrouse", ],
+        correctAnswer: 0
+      },
+      
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let timer;
+    function startQuiz() {
+  document.getElementById("start-btn").style.display = "none";
+  document.getElementById("continue-btn").style.display = "inline";
+  document.getElementById("end-btn").style.display = "inline";
+  document.getElementById("restart-btn").style.display = "none"; // Hide the restart button initially
+  
+  // Shuffle the quizData array before starting the quiz
+  shuffleArray(quizData);
+  
+  nextQuestion();
+  startTimer();
+}
+const timerElement = document.getElementById('timer');
+const customAlert = document.getElementById('custom-alert');
+
+function dismissAlert() {
+  const customAlert = document.getElementById('custom-alert');
+  customAlert.innerHTML = ''; // Clear the content of the alert
+  customAlert.style.display = 'none'; // Hide the alert
+  document.getElementById("restart-btn").style.display = "inline"; // Show the "Restart" button
+
+}
+
+    // Function to hide the timer element
+    function hideTimer() {
+      timerElement.style.display = 'none';
+    }
+// Add event listener to the "Okay" button inside the alert
+    customAlert.addEventListener('click', function(event) {
+      if (event.target.classList.contains('custom-alert-button')) {
+        dismissAlert(); // Dismiss the alert when the "Okay" button is clicked
+        hideTimer(); // Hide the timer when the "Okay" button is clicked
+      }
+    });
+    function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+    function nextQuestion() {
+    if (currentQuestion < quizData.length) {
+        displayQuestion(currentQuestion);
+        currentQuestion++;
+        document.getElementById("continue-btn").style.display = "inline"; // Show the "Continue" button for the next question
+    } else {
+        endQuiz();
+        document.getElementById("continue-btn").style.display = "none"; // Hide the "Continue" button when all questions are answered
+        document.getElementById("restart-btn").style.display = "inline"; // Show the restart button when quiz ends
+    }
+}
+
+    function displayQuestion(questionIndex) {
+      const questionElement = document.getElementById("question");
+      const optionsElement = document.getElementById("options");
+      const currentQuestionData = quizData[questionIndex];
+      
+      questionElement.textContent = currentQuestionData.question;
+      optionsElement.innerHTML = "";
+
+      currentQuestionData.options.forEach((option, index) => {
+        const optionElement = document.createElement("button");
+        optionElement.textContent = option;
+        optionElement.onclick = () => checkAnswer(index, currentQuestionData.correctAnswer);
+        optionsElement.appendChild(optionElement);
+      });
+    }
+
+    let userAnswers = []; // Array to store user's answers
+
+function checkAnswer(userAnswer, correctAnswer) {
+  userAnswers.push(userAnswer); // Store user's answer
+  if (userAnswer === correctAnswer) {
+    score++;
+    document.getElementById("score").textContent = score;
+  }
+  nextQuestion();
+} 
+
+function startTimer() {
+    let timeLeft = 20; // Initial time in seconds
+    timer = setInterval(() => {
+        document.getElementById("timer").textContent = timeLeft;
+        timeLeft--;
+
+        if (timeLeft < 0) {
+            clearInterval(timer); // Stop the timer when time is up
+            endQuiz(); // Optionally, call a function when time is up
+        }
+    }, 1000); // Update timer every 1 second
+
+    document.getElementById("question").style.display = "block";
+      document.getElementById("options").style.display = "block";
+}
+
+function restartQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    userAnswers = [];
+    document.getElementById("score").textContent = score;
+    document.getElementById("restart-btn").style.display = "none";
+    document.getElementById("start-btn").style.display = "inline";
+    document.getElementById("continue-btn").style.display = "none";
+    document.getElementById("end-btn").style.display = "none";
+    document.getElementById("question").style.display = "none";
+    document.getElementById("options").style.display = "none";
+    document.getElementById("timer").style.display = "block";
+
+}
+function endQuiz() {
+  clearInterval(timer); // Stop the timer
+  // Hide the rest of the elements and display the alert
+  document.getElementById("end-btn").style.display = "none"; // Hide the "End" button
+  document.getElementById("continue-btn").style.display = "none"; // Hide the "Continue" button
+  document.getElementById("restart-btn").style.display = "inline"; // Show the "Restart" button
+  document.getElementById("custom-alert").style.display = "block"; // Show the alert
+  
+  let correctCount = 0;
+  
+  // Check how many answers are correct
+  for (let i = 0; i < quizData.length; i++) {
+    if (userAnswers[i] !== undefined && userAnswers[i] === quizData[i].correctAnswer) {
+      correctCount++;
+    }
+  }
+
+  let resultMessage = '';
+  if (correctCount === quizData.length) { // If all answers are correct
+    resultMessage = "<div style='font-size: 20px;'>Congratulations! All answers are correct!</div>";
+  } else {
+    let incorrectAnswers = [];
+    let correctAnswers = [];
+
+    for (let i = 0; i < quizData.length; i++) {
+        if (userAnswers[i] !== undefined && userAnswers[i] !== quizData[i].correctAnswer) {
+            incorrectAnswers.push({
+                question: quizData[i].question,
+                correctAnswer: quizData[i].options[quizData[i].correctAnswer],
+                userAnswer: quizData[i].options[userAnswers[i]]
+            });
+        } else if (userAnswers[i] === quizData[i].correctAnswer) {
+            correctAnswers.push(quizData[i].question + ': ' + quizData[i].options[quizData[i].correctAnswer]);
+        }
+    }
+
+    if (incorrectAnswers.length > 0) {
+        resultMessage += "<div style='font-size: 20px;'><strong>Incorrect Answers:</strong></div><br>";
+        incorrectAnswers.forEach((incorrectAnswer, index) => {
+            resultMessage += `<div>${index + 1}. ${incorrectAnswer.question}: Correct Answer - ${incorrectAnswer.correctAnswer}. Your Answer - ${incorrectAnswer.userAnswer}</div><br>`;
+        });
+    }
+
+    if (correctAnswers.length > 0) {
+        resultMessage += "<br><div style='font-size: 20px;'><strong>Correct Answers:</strong></div><br>";
+        correctAnswers.forEach((correctAnswer, index) => {
+            resultMessage += `<div>${index + 1}. ${correctAnswer}</div><br>`;
+        });
+    }
+  }
+
+  // Append an "Okay" button to the result message
+  resultMessage += '<button class="custom-alert-button" onclick="dismissAlert()">Okay</button>';
+
+  const customAlert = document.getElementById('custom-alert');
+  customAlert.innerHTML = resultMessage;
+  customAlert.style.display = 'block';
+}
+  </script>
+</body>
+</html>

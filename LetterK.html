@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vocabulary-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Vocabulary</title>
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("vocabu.jpg");
+            background-size: cover;
+            color: white;
+            font-family: 'Poppins', sans-serif; /* Changed font to Poppins */
+            padding-bottom: 100px; /* Added padding at the bottom for pagination */
+            margin-bottom: 100px; /* Adjusted margin at the bottom for pagination */
+        }
+        
+        header {
+            font-size: 27px;
+            font-weight: bold;
+            padding: 10px;
+            color: white;
+            text-align: center;
+            background-color: lightpink;
+        }
+
+        .pagination {
+            position: fixed;
+            bottom: 20px; /* Adjusted bottom position for pagination */
+            left: 50%; /* Centered pagination horizontally */
+            transform: translateX(-50%);
+            text-align: center;
+            background-color: pink; /* Pink box background */
+            border-radius: 10px; /* Rounded corners */
+            font-family: 'Poppins', sans-serif; /* Changed font to Poppins */
+        }
+
+        .pagination a, .pagination .arrow {
+            display: inline-block;
+            padding: 8px 12px; /* Adjusted padding for buttons */
+            margin: 0 4px;
+            background-color: pink; /* Pink button background */
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px; /* Adjusted font size */
+            cursor: pointer; /* Added cursor pointer */
+        }
+
+        .pagination a:hover {
+            background-color: #ff77aa; /* Lighter pink on hover */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 25px;
+            margin-bottom: 10px; /* Added margin bottom for spacing */
+            padding: 10px;
+            border-radius: 5px; /* Rounded corners */
+        }
+        
+        p {
+            font-size: 20px;
+            margin-bottom: 5px; /* Adjusted margin bottom for spacing */
+            line-height: 1.4; /* Increased line height for better readability */
+        }
+
+        .examples {
+            font-size: 18px;
+            margin-left: 20px;
+            padding-left: 10px;
+            border-left: 2px solid #ccc;
+            margin-bottom: 20px; /* Adjusted margin bottom for spacing */
+        }
+    </style>
+</head>
+<body>
+    <header>K Words</header>
+     <div id="K"> </div>    
+     <li>Ken</li>
+     <p>Range of what one can know or understand</p>
+     <ul class="examples">
+     <li>Ah, but the Eyes Divine look long and see far; things beyond the human ken are all revealed. Brady, Cyrus Townsend</li>
+         <!-- Add more examples as needed -->
+     </ul>
+     <li>Kindle</li>
+     <p>Cause to start burning</p>
+     <ul class="examples">
+     <li>At a little distance a fire had been quickly kindled and cooking was already going on. Stoddard, William O.</li>
+         <!-- Add more examples as needed -->
+     </ul>
+     <li>Kinetic</li>
+     <p>Characterized by motion</p>
+     <ul class="examples">
+     <li>But when the can is opened, the potential energy quickly converts to kinetic energy as the fake snake jumps out. Scientific American (Apr 5, 2012)</li>
+         <!-- Add more examples as needed -->
+     </ul>
+     <li>Kinship</li>
+     <p>Relatedness or connection by blood or marriage or adoption</p>
+     <ul class="examples">
+     <li>Alexander the Great extended his conquests as far eastward as India, whose native inhabitants claim kinship with European peoples through a common Aryan ancestry. Whitney, Orson F.</li>
+         <!-- Add more examples as needed -->
+     </ul>
+     <li>Knave</li>
+     <p>A deceitful and unreliable scoundrel</p>
+     <ul class="examples">
+     <li>The merchant subsequently turned out a very great knave, cheating Tom on various occasions, and finally broke, very much in his debt. Borrow, George Henry</li>
+         <!-- Add more examples as needed -->
+     </ul>
+     <div class="pagination">
+        <a href="LetterJ.html">&#9664; Previous</a>
+        <a href="LetterL.html">Next &#9654;</a>
+    </div>
+    
+    <script>
+        function previousPage() {
+            // Code to navigate to the previous page
+            window.history.back();
+        }
+    
+        function nextPage() {
+            // Code to navigate to the next page
+            // Assuming the next page URL follows a pattern like "vocabulary-Letter B.html"
+            var currentLetter = document.querySelector('.active').textContent;
+            var nextLetter = String.fromCharCode(currentLetter.charCodeAt(0) + 1);
+            window.location.href = "vocabulary-Letter " + nextLetter + ".html";
+        }
+    </script>
+</body>
+</html>

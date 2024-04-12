@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vocabulary-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Vocabulary</title>
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("vocabu.jpg");
+            background-size: cover;
+            color: white;
+            font-family: 'Poppins', sans-serif; /* Changed font to Poppins */
+            padding-bottom: 100px; /* Added padding at the bottom for pagination */
+            margin-bottom: 100px; /* Adjusted margin at the bottom for pagination */
+        }
+        
+        header {
+            font-size: 27px;
+            font-weight: bold;
+            padding: 10px;
+            color: white;
+            text-align: center;
+            background-color: lightpink;
+        }
+
+        .pagination {
+            position: fixed;
+            bottom: 20px; /* Adjusted bottom position for pagination */
+            left: 50%; /* Centered pagination horizontally */
+            transform: translateX(-50%);
+            text-align: center;
+            background-color: pink; /* Pink box background */
+            border-radius: 10px; /* Rounded corners */
+            font-family: 'Poppins', sans-serif; /* Changed font to Poppins */
+        }
+
+        .pagination a, .pagination .arrow {
+            display: inline-block;
+            padding: 8px 12px; /* Adjusted padding for buttons */
+            margin: 0 4px;
+            background-color: pink; /* Pink button background */
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px; /* Adjusted font size */
+            cursor: pointer; /* Added cursor pointer */
+        }
+
+        .pagination a:hover {
+            background-color: #ff77aa; /* Lighter pink on hover */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 25px;
+            margin-bottom: 10px; /* Added margin bottom for spacing */
+            padding: 10px;
+            border-radius: 5px; /* Rounded corners */
+        }
+        
+        p {
+            font-size: 20px;
+            margin-bottom: 5px; /* Adjusted margin bottom for spacing */
+            line-height: 1.4; /* Increased line height for better readability */
+        }
+
+        .examples {
+            font-size: 18px;
+            margin-left: 20px;
+            padding-left: 10px;
+            border-left: 2px solid #ccc;
+            margin-bottom: 20px; /* Adjusted margin bottom for spacing */
+        }
+    </style>
+</head>
+<body>
+    <header>B Words</header>
+    <ul>
+        <div id="B"> </div>
+        <li>Baffle</li>
+        <p>Be a mystery or bewildering to</p>
+        <ul class="examples">
+            <li>It baffles her physician as well, and has got doctors increasingly worried.</li>
+            <!-- Add more examples as needed -->
+        </ul>
+        <li>Baleful</li>
+        <p>deadly or sinister</p>
+        <ul class="examples">
+            <li>His glance fell on Van Bleit, pallid, red-eyed, obviously suffering, observing him with the baleful look of some savage captive beast.Young, F.E. Mills</li>
+            <!-- Add more examples as needed -->
+        </ul>
+        <li>Balk</li>
+        <p>refuse to proceed or comply</p>
+        <ul class="examples">
+            <li>Congressional Republicans, particularly in the House of Representatives, have balked at raising the debt ceiling unless it is accompanied by significant spending cuts.</li>
+            <!-- Add more examples as needed -->
+        </ul>
+        <li>Ballad</li>
+        <p>A narrative song with a recurrent refrain</p>
+        <ul class="examples">
+            <li>And in the encore there was a new ballad, “Silent Treatment,” which Ms. Bryan sang gently, backed only by Mr. Dafydd on acoustic guitar. New York Times (Apr 1, 2012)</li>
+            <!-- Add more examples as needed -->
+        </ul>
+        <li>Ban</li>
+        <p>Prohibit especially by law or social pressure</p>
+        <ul class="examples">
+            <li>That’s why gambling and wagers are heavily regulated or banned outright in nearly every country.Slate (Apr 4, 2012)</li>
+            <!-- Add more examples as needed -->
+        </ul>
+    </ul>
+
+    <div class="pagination">
+        <a href="vocabulary-Letter A.html">&#9664; Previous</a>
+        <a href="LetterC.html">Next &#9654;</a>
+    </div>
+
+    <script>
+        function previousPage() {
+            // Code to navigate to the previous page
+            window.history.back();
+        }
+
+        function nextPage() {
+            // Code to navigate to the next page
+            // Assuming the next page URL follows a pattern like "vocabulary-Letter B.html"
+            var currentLetter = document.querySelector('.active').textContent;
+            var nextLetter = String.fromCharCode(currentLetter.charCodeAt(0) + 1);
+            window.location.href = "vocabulary-Letter " + nextLetter + ".html";
+        }
+    </script>
+</body>
+</html>

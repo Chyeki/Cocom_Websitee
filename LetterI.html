@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vocabulary-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Vocabulary</title>
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url("vocabu.jpg");
+            background-size: cover;
+            color: white;
+            font-family: 'Poppins', sans-serif; /* Changed font to Poppins */
+            padding-bottom: 100px; /* Added padding at the bottom for pagination */
+            margin-bottom: 100px; /* Adjusted margin at the bottom for pagination */
+        }
+        
+        header {
+            font-size: 27px;
+            font-weight: bold;
+            padding: 10px;
+            color: white;
+            text-align: center;
+            background-color: lightpink;
+        }
+
+        .pagination {
+            position: fixed;
+            bottom: 20px; /* Adjusted bottom position for pagination */
+            left: 50%; /* Centered pagination horizontally */
+            transform: translateX(-50%);
+            text-align: center;
+            background-color: pink; /* Pink box background */
+            border-radius: 10px; /* Rounded corners */
+            font-family: 'Poppins', sans-serif; /* Changed font to Poppins */
+        }
+
+        .pagination a, .pagination .arrow {
+            display: inline-block;
+            padding: 8px 12px; /* Adjusted padding for buttons */
+            margin: 0 4px;
+            background-color: pink; /* Pink button background */
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px; /* Adjusted font size */
+            cursor: pointer; /* Added cursor pointer */
+        }
+
+        .pagination a:hover {
+            background-color: #ff77aa; /* Lighter pink on hover */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 25px;
+            margin-bottom: 10px; /* Added margin bottom for spacing */
+            padding: 10px;
+            border-radius: 5px; /* Rounded corners */
+        }
+        
+        p {
+            font-size: 20px;
+            margin-bottom: 5px; /* Adjusted margin bottom for spacing */
+            line-height: 1.4; /* Increased line height for better readability */
+        }
+
+        .examples {
+            font-size: 18px;
+            margin-left: 20px;
+            padding-left: 10px;
+            border-left: 2px solid #ccc;
+            margin-bottom: 20px; /* Adjusted margin bottom for spacing */
+        }
+    </style>
+</head>
+<body>
+    <header>I Words</header>
+    <div id="I"> </div>    
+    <li>Iconoclast</li>
+    <p>Someone who attacks cherished ideas or institutionss</p>
+    <ul class="examples">
+    <li>Jobs is a classic iconoclast, one who aggressively seeks out, attacks, and overthrows conventional ideas. BusinessWeek (Oct 12, 2010)</li>
+        <!-- Add more examples as needed -->
+    </ul>
+    <li>Idealistic</li>
+    <p>Motivated by noble or moral beliefs rather than practicality</p>
+    <ul class="examples">
+    <li>Instructors, of all levels, are fundamentally idealistic people, motivated by a passion for helping the world’s young billions achieve their human potential. Forbes (Jan 24, 2012)</li>
+        <!-- Add more examples as needed -->
+    </ul>
+    <li>Ideological</li>
+    <p>Concerned with or suggestive of mental concepts</p>
+    <ul class="examples">
+    <li>What was once an ideological abstraction — “austerity” — will have very real effects on everyday life for average Americans. Washington Post (Jul 30, 2011)</li>
+        <!-- Add more examples as needed -->
+    </ul>
+    <li>Idiom</li>
+    <p>Expression whose meaning cannot be inferred from its words</p>
+    <ul class="examples">
+    <li>“Hand down, man down,” he said, repeating a favorite Jackson broadcasting idiom at a news conference Monday to introduce the Warriors’ rookies for next season.New York Times (Jun 29, 2011)</li>
+        <!-- Add more examples as needed -->
+    </ul>
+    <li>Idiosyncrasy</li>
+    <p>A behavioral attribute peculiar to an individual</p>
+    <ul class="examples">
+    <li>My roles in independent films have been fuller, chockablock with all sorts of human idiosyncrasies, kinks and foibles of humanity.</li>
+        <!-- Add more examples as needed -->
+    </ul>
+    <div class="pagination">
+        <a href="LetterH.html">&#9664; Previous</a>
+        <a href="LetterJ.html">Next &#9654;</a>
+    </div>
+    
+    <script>
+        function previousPage() {
+            // Code to navigate to the previous page
+            window.history.back();
+        }
+    
+        function nextPage() {
+            // Code to navigate to the next page
+            // Assuming the next page URL follows a pattern like "vocabulary-Letter B.html"
+            var currentLetter = document.querySelector('.active').textContent;
+            var nextLetter = String.fromCharCode(currentLetter.charCodeAt(0) + 1);
+            window.location.href = "vocabulary-Letter " + nextLetter + ".html";
+        }
+    </script>
+</body>
+</html>
